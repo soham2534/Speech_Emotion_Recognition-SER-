@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Emotion Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎭 Speech Emotion Recognition</h1>
+        <p>Record or upload an audio file to detect emotions!</p>
+
+        <div class="auth-links">
+            {% if 'user' in session %}
+                <span>Welcome, {{ session['user'] }}!</span> | 
+                <a href="{{ url_for('logout') }}">🚪 Logout</a>
+            {% else %}
+                <a href="{{ url_for('signin') }}">🔐 Sign In</a> | 
+                <a href="{{ url_for('signup') }}">📝 Sign Up</a>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <button id="startRecording">🎤 Start Recording</button>
+            <button id="stopRecording" disabled>⏹ Stop Recording</button>
+            <audio id="audioPlayback" controls></audio>
+        </div>
+
+        <div class="card">
+            <input type="file" id="audioFile" accept="audio/*">
+            <p id="fileName" style="display: none;"></p>
+        </div>
+
+        <button id="uploadButton" disabled>📤 Upload Audio</button>
+
+        <div class="result-box">
+            <p id="result">🧐 Emotion will be displayed here...</p>
+        </div>
+    </div>
+
+    <script>
+        // Show selected file name
+        document.getElementById('audioFile').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : "No file selected";
+            const fileDisplay = document.getElementById('fileName');
+            fileDisplay.textContent = "Selected: " + fileName;
+            fileDisplay.style.display = "block";
+        });
+    </script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
