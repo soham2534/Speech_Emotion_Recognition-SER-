@@ -1,7 +1,5 @@
 # Speech Emotion Recognition (SER) Application
 
-A web application that uses machine learning to recognize emotions from speech audio input.
-
 ## Features
 
 - **Speech Emotion Recognition**: Upload audio files or record audio directly to detect emotions
@@ -107,6 +105,3 @@ pytest
 - `templates/`: HTML templates
 - `static/`: CSS, JavaScript, and static assets
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
